@@ -1,4 +1,5 @@
 import csv
+import datetime
 """
 This script simplifies the process of filling the monthly template.
 Creates an Excel sheet of each student:
@@ -15,6 +16,7 @@ date	studentnumber	firstname	lastname	hours
 An example line (may not look tab separated but it is!):
 04-Jul-24	00000001	foo	bar	10
 """
+year = datetime.date.today().year
 
 def get_data(filename):
     """
@@ -94,7 +96,7 @@ def template_maker(data, month, my_db):
         # student no, firstname, lastname, , description, start, end, hours
         data_out.append([person[0], my_db[person[0]][0], my_db[person[0]][1], None, 'Micro', period[person[0]][0]+f"/{mnth}/24", period[person[0]][1]+f"/{mnth}/24", hours[person[0]]])
 
-    with open(f'Monthly Template Raw/Micro Volunteering {month} 2025 Template Hours.csv', 'w', newline='') as f:
+    with open(f'Monthly Template Raw/Micro Volunteering {month} {year} Template Hours.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerows(data_out)
 
@@ -107,7 +109,7 @@ def main():
     my_db = db(my_data)
     template_maker(my_data, month, my_db)
     print('\n================================================================================')
-    print(f"Successfuly created file:\n\t\'Micro Volunteering {month} 2025 Template Hours.csv\'\nin the \'Monthly Template Raw\' folder!")
+    print(f"Successfuly created file:\n\t\'Micro Volunteering {month} {year} Template Hours.csv\'\nin the \'Monthly Template Raw\' folder!")
     print('\n================================================================================')
 
         

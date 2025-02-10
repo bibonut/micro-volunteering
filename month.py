@@ -1,4 +1,5 @@
 import csv
+import datetime
 """
 This script counts number of hours volunteered by each person in the month and the grand total for that month.
 Creates an Excel sheet of each student:
@@ -13,6 +14,7 @@ date	studentnumber	firstname	lastname	hours
 An example line (may not look tab separated but it is!):
 04-Jul-24	00000001	foo	bar	10
 """
+year = datetime.date.today().year
 
 def get_data(filename):
     """
@@ -65,7 +67,7 @@ def calc(data, my_db, month):
         data_out.append([person[0],my_db.get(person[0])[0],my_db.get(person[0])[1],my_dict.get(person[0])])
     data_out.append([None,None,"Grand Total",f"{sum_hours}"])
 
-    with open(f'Monthly Hours/Micro Volunteering {month} 2025 Hours.csv', 'w', newline='') as f:
+    with open(f'Monthly Hours/Micro Volunteering {month} {year} Hours.csv', 'w', newline='') as f:
         writer = csv.writer(f)
         writer.writerows(data_out)
 
@@ -78,7 +80,7 @@ def main():
     my_db = db(my_data)
     calc(my_data, my_db, month)
     print('\n================================================================================')
-    print(f'Successfuly created file:\n\t\'Micro Volunteering {month} 2025 Hours.csv\'\nin the \'Monthly Hours\' folder!')
+    print(f'Successfuly created file:\n\t\'Micro Volunteering {month} {year} Hours.csv\'\nin the \'Monthly Hours\' folder!')
     print('\n================================================================================')
         
 if __name__ == "__main__":
