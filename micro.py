@@ -1,5 +1,6 @@
 import collections
 import os
+import platform
 """
 Command line program to check sign ins and outs for weekly sessions
 """
@@ -14,7 +15,7 @@ duplicate_sign_outs = []
 
 
 def calc(sign_ins, sign_outs):
-    print('=============================================================================================\n')
+    print('================================================================================\n')
     print("Inputted sign in values:")
     print(f"		{sign_ins}")
     print("Inputted sign out values:")
@@ -34,7 +35,7 @@ def calc(sign_ins, sign_outs):
         if number not in sign_ins:
             no_sign_in.append()
 
-    print('=============================================================================================\n')
+    print('================================================================================\n')
     print('Results:\n')
     print(f'Number of sign ins inputted: {len(sign_ins)}')
     print(f'Number of sign outs inputted: {len(sign_outs)}\n')
@@ -46,16 +47,21 @@ def calc(sign_ins, sign_outs):
     print(f'Didnt sign out: {no_sign_out}\n')
 
     print('Please remember to double check results with QR hours and pay attention to the time of sign in/out!\n')
-    print('=============================================================================================\n')
+    print('================================================================================\n')
 
 
 def main():
-    print('\n=============================================================================================')
+    print('\n================================================================================')
     print('Input format:\nstudentnumber1,studentnumber2,studentnumber3...\n\n')
     print('Example input:\n24069988,24002225,23952512,22974583,24132194,23902644,24254296...\n')
     sign_ins = input('\n> Please input the sign ins in the required format:\n')
     sign_outs = input('\n> Please input the sign outs in the required format:\n')
-    os.system('cls||clear')
+    
+    if platform.system() == 'Darwin':
+        os.system('clear')
+    if platform.system() == 'Windows':
+        os.system('cls')
+    
     calc(sign_ins, sign_outs)
 
 if __name__ == "__main__":
