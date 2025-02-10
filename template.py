@@ -100,12 +100,15 @@ def template_maker(data, month, my_db):
 
 
 def main():
-    month = input('What month is it?\n')
+    print('\n================================================================================')
+    month = input('> What month is it?\n')
 
     my_data = get_data("data")
     my_db = db(my_data)
     template_maker(my_data, month, my_db)
-    print(f"Successfuly created file: 'Micro Volunteering {month} 2025 Template Hours.csv' in the 'Monthly Template Raw' folder")
+    print('\n================================================================================')
+    print(f"Successfuly created file:\n\t\'Micro Volunteering {month} 2025 Template Hours.csv\'\nin the \'Monthly Template Raw\' folder!")
+    print('\n================================================================================')
 
         
 if __name__ == "__main__":
