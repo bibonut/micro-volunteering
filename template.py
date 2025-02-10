@@ -25,7 +25,7 @@ def get_data(filename):
     data = []
 
     for line in file:
-        data.append(line[:-1].split('\t'))
+        data.append(line.split('\t'))
 
     file.close()
 
@@ -91,7 +91,6 @@ def template_maker(data, month, my_db):
 
     data_out.append(["Student Number","First Name","Last Name",None,"Description","Start Date","End Date","Hours"])
     for person in my_list:
-        print(person)
         # student no, firstname, lastname, , description, start, end, hours
         data_out.append([person[0], my_db[person[0]][0], my_db[person[0]][1], None, 'Micro', period[person[0]][0]+f"/{mnth}/24", period[person[0]][1]+f"/{mnth}/24", hours[person[0]]])
 
