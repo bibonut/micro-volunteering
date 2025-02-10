@@ -13,25 +13,23 @@ duplicate_sign_outs = []
 
 
 def calc(sign_ins, sign_outs):
+    sign_ins = sign_ins.split(',')
+    sign_outs = sign_outs.split(',')
+
     duplicate_sign_ins = [item for item, count in collections.Counter(sign_ins).items() if count > 1]
     duplicate_sign_outs = [item for item, count in collections.Counter(sign_outs).items() if count > 1]
 
-    sign_ins = list(dict.fromkeys(sign_ins))
-    sign_outs = list(dict.fromkeys(sign_outs))
+    for number in sign_ins:
+        if number not in sign_outs:
+            no_sign_out.append(number)
 
-    print(sign_outs)
-
-    for no in sign_ins:
-        if no not in sign_outs:
-            no_sign_out.append(no)
-
-    for no in sign_outs:
-        if no not in sign_ins:
-            no_sign_in.append(no)
+    for number in sign_outs:
+        if number not in sign_ins:
+            no_sign_in.append()
     
     print("\n")
-    print(f"Number of sign ins (no duplicates): {len(sign_ins)}")
-    print(f"Number of sign outs (no duplicates): {len(sign_outs)}\n")
+    print(f"Number of sign ins inputted: {len(sign_ins)}")
+    print(f"Number of sign outs inputted: {len(sign_outs)}\n")
 
     print(f"duplicate sign ins: {duplicate_sign_ins}")
     print(f"duplicate sign outs: {duplicate_sign_outs}\n")
@@ -41,10 +39,10 @@ def calc(sign_ins, sign_outs):
 
 
 def main():
-    print('\nInput format:\nstudentnumber1,studentnumber2,studentnumber3 ...\n\n')
+    print('\n\nInput format:\nstudentnumber1,studentnumber2,studentnumber3 ...\n\n')
     print('Example input:\n24069988,24002225,23952512,22974583,24132194,23902644,24254296\n')
-    sign_ins = input('Please input the sign ins following the format\n')
-    sign_outs = input('Please input the sign outs following the format\n')
+    sign_ins = input('\n\nPlease input the sign ins following the format\n')
+    sign_outs = input('\n\nPlease input the sign outs following the format\n')
     calc(sign_ins, sign_outs)
 
 if __name__ == "__main__":
