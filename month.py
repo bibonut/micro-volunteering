@@ -54,7 +54,6 @@ def calc(data, my_db, month):
     sum_hours = 0
 
     for line in data:
-        print(line[4])
         my_dict[line[1]] = my_dict.get(line[1], 0) + int(line[4])
         sum_hours += int(line[4])
 
@@ -72,12 +71,15 @@ def calc(data, my_db, month):
 
 
 def main():
-    month = input('What month?\n')
+    print('\n================================================================================')
+    month = input('> What month is it?\n')
 
     my_data = get_data("data")
     my_db = db(my_data)
     calc(my_data, my_db, month)
-    print(f"Successfuly created file: 'Micro Volunteering {month} 2025 Hours.csv' in the 'Monthly Hours' folder")
+    print('\n================================================================================')
+    print(f'Successfuly created file:\n\t\'Micro Volunteering {month} 2025 Hours.csv\'\nin the \'Monthly Hours\' folder!')
+    print('\n================================================================================')
         
 if __name__ == "__main__":
     main()
