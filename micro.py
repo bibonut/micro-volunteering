@@ -21,8 +21,8 @@ def calc(sign_ins, sign_outs):
     print("Inputted sign out values:")
     print(f"		{sign_outs}\n")
     
-    sign_ins = sign_ins.split(',')
-    sign_outs = sign_outs.split(',')
+    sign_ins = sign_ins.replace('\t','').split(',')
+    sign_outs = sign_outs.replace('\t','').split(',')
 
     duplicate_sign_ins = [item for item, count in collections.Counter(sign_ins).items() if count > 1]
     duplicate_sign_outs = [item for item, count in collections.Counter(sign_outs).items() if count > 1]
@@ -33,7 +33,7 @@ def calc(sign_ins, sign_outs):
 
     for number in sign_outs:
         if number not in sign_ins:
-            no_sign_in.append()
+            no_sign_in.append(number)
 
     print('================================================================================\n')
     print('Results:\n')
